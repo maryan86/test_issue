@@ -19,6 +19,25 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:8000/api/user/recover-password
+Content-Type: application/json
+
+{
+    "email": "example@com.ua"
+}
+
+###
+PATCH http://localhost:8000/api/user/recover-password
+Content-Type: application/json
+
+{
+    "email": "example@com.ua",
+    "password": "NewPass123#",
+    "password_confirmation": "NewPass123#",
+    "token": "{{from_email}}"
+}
+
+###
 GET http://localhost:8000/api/user/companies
 Authorization: Bearer {{auth_token}}
 

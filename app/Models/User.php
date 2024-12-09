@@ -3,19 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Notifications\Notifiable;
 use Laravel\Lumen\Auth\Authorizable;
 
-class User extends Model implements \Illuminate\Contracts\Auth\Authenticatable
+class User extends Model implements \Illuminate\Contracts\Auth\Authenticatable, CanResetPassword
 {
     use Authenticatable, Authorizable, HasFactory;
+    use \Illuminate\Auth\Passwords\CanResetPassword;
+    use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
     protected $fillable = [
         'first_name', 'last_name', 'email', 'password', 'phone', 'api_token'
     ];
@@ -26,14 +26,14 @@ class User extends Model implements \Illuminate\Contracts\Auth\Authenticatable
      * @var string[]
      */
     protected $hidden = [
-        'password',
+        'password', 'remember_token'
     ];
 
     protected $casts = [
         'password' => 'hashed'
     ];
 
-    public function companies(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function companies(): HasMany
     {
         return $this->hasMany(Company::class);
     }

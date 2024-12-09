@@ -16,6 +16,8 @@
 $router->group(['prefix' => 'api'], function () use ($router) {
     $router->post('user/sign-in', 'UserController@signin');
     $router->post('user/register', 'UserController@register');
+    $router->post('user/recover-password', 'PasswordController@sendResetLinkEmail');
+    $router->patch('user/recover-password', 'PasswordController@reset');
 
     $router->group(['middleware' => 'auth'], function () use ($router) {
         $router->get('users', 'UserController@index');

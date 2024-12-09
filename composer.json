@@ -6,6 +6,9 @@
     "type": "project",
     "require": {
         "php": "^8.4",
+        "guzzlehttp/guzzle": "^7.9",
+        "illuminate/mail": "^10.48",
+        "illuminate/notifications": "^10.48",
         "laravel/legacy-factories": "^1.4",
         "laravel/lumen-framework": "^10.0"
     },
