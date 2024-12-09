@@ -78,9 +78,8 @@ class UserController extends Controller
     {
         $data = $request->request->all();
         $user = $this->repository->getOne($data['user_id']);
-        $companies = $this->repository->getCompanies($user);
 
-        return response()->json($companies);
+        return response()->json($user->companies);
     }
 
 }

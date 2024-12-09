@@ -10,9 +10,4 @@ class UserRepository extends BaseRepository
     {
         return User::class;
     }
-
-    public function getCompanies(User $user)
-    {
-        return $user->companies;
-    }
 }
